@@ -407,11 +407,12 @@ namespace NameGen {
 			return final;
 		}
 
-		public toString(rand:number): string {
+		public toString(rand:number=0): string {
 			if (!this.generators) {
 				return '';
 			}
 			let rnd = Math.floor(rand * this.generators.length);
+			console.log(rand);
 			return this.generators[rnd].toString(rand);
 		}
 	}

@@ -1,14 +1,6 @@
 import { daysInYear } from "../constant";
 import { daysInMonth } from "../constant";
-
-interface ITimelineDate{
-  day: number,
-  month: number,
-  year: number,
-  startTimelineDay: number,
-  startTimelineMonth: number,
-  startTimelineYear: number
-}
+import ITimelineDate from "./interfaces/ITimelineDate";
 
 class TimelineDate implements ITimelineDate {
   day;

@@ -16,7 +16,7 @@ export interface ITreeDrawerProps {
 
 const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
     const nodes   = useTypedSelector(state => state.characters); //graph
-    const edges   = useTypedSelector(state => state.links);
+    const edges   = useTypedSelector(state => state.links     );
 
     const dispach = useTypedDispatch();
 
