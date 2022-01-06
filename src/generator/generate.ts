@@ -8,10 +8,10 @@ type relationType = "merried" | "child";
 export interface IGenaLink {from:Id,to:Id,type:relationType}
 
 class CharactersArray{
-    dynastyid                   :number;
-    memberCount                 :number;
-    main                        :Map<Id,IPerson>;
-    secondary                   :Map<Id,IPerson>;
+    dynastyid       :number;
+    memberCount     :number;
+    main            :Map<Id,IPerson>;
+    secondary       :Map<Id,IPerson>;
     constructor(dynastyid:number){
         this.dynastyid = dynastyid
         this.memberCount = 0;
@@ -69,8 +69,8 @@ const DEFAULT_CONFIG:IGenaConfiguration = {
     },
     living: {
         avrageFertilityAge:18,
-        avrageLifespan:60,
-        lifespanVariation:0.5,
+        avrageLifespan:90,
+        lifespanVariation:0.2,
         peerDifferenseLimit:6
     },
     technical: {
