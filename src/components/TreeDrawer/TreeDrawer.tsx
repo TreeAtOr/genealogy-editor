@@ -5,9 +5,10 @@ import backgndImage from "../../media/backgnd.jpg";
 
 // @ts-ignore
 import Graph from "react-graph-vis"
-import { IGraphNode, IPersonAsINode } from "../../types/interfaces/IPerson";
+import IPerson, { IGraphNode, IPersonAsINode } from "../../types/interfaces/IPerson";
 import { IGenaLinkAsILink, ILink } from "../../types/interfaces/ILink";
 import { useTypedDispatch } from "../../hooks/useTypedDispatch";
+import { IGenaLink } from "../../generator/generate";
 
 export interface ITreeDrawerProps {
     width?:number;
@@ -17,7 +18,7 @@ export interface ITreeDrawerProps {
 const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
     const nodes   = useTypedSelector(state => state.characters); //graph
     const edges   = useTypedSelector(state => state.links     );
-
+    const filtration = useTypedSelector(state => state.app?.filtration)
     const dispach = useTypedDispatch();
 
     let graphDefault: {nodes: Array<any>, edges: Array<any>} = {
@@ -30,15 +31,24 @@ const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
 
     useEffect(()=> {
         if (nodes && edges) {
+            const nodeFilter = (v:IPerson) =>{
+                if(!filtration) return true
+                return filtration.merrage || v.id.dynastyid === 0
+            }
+            const linkFilter = (v:IGenaLink) => {
+                if(!filtration) return true
+                return filtration.merrage || ( v.from.dynastyid === 0 && v.type === "child" )
+            }
+
             let curGraph: { nodes: Array<IGraphNode>, edges: Array<ILink> } = {
-                nodes: [...nodes.filter(v => v.id.dynastyid === 0).map(IPersonAsINode)],
-                edges: [...edges.filter(v => v.from.dynastyid === 0 && v.type === "child").map(IGenaLinkAsILink)]
+                nodes: [...nodes.filter(nodeFilter).map(IPersonAsINode)],
+                edges: [...edges.filter(linkFilter).map(IGenaLinkAsILink)]
             };
             setGraph({...curGraph});
             setGraphKey(graphKey+1);
         }
         // eslint-disable-next-line
-    }, [nodes, edges])
+    }, [nodes, edges,filtration])
 
     if (!nodes || !edges)
         return <h1>

@@ -38,8 +38,9 @@ class CharactersArray{
         return this.secondary.delete(id)
     }
     clear(){
-        this.main      = new Map<Id,IPerson>();
-        this.secondary = new Map<Id,IPerson>();
+        this.main        = new Map<Id,IPerson>();
+        this.secondary   = new Map<Id,IPerson>();
+        this.memberCount = 0;
     }
 
 }

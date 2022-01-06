@@ -5,6 +5,7 @@ import IPerson from "../../types/interfaces/IPerson";
 import FieldCharacteristic from "../ui/FieldCharacteristic/FieldCharacteristic";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useTypedDispatch } from "../../hooks/useTypedDispatch";
+import { SwitchableButton } from "../ui/SwithableButton/SwitchableButton";
 
 function Characteristics() {
   // начальную инициализацию нужно изменить при загрузке персонажа
@@ -12,8 +13,7 @@ function Characteristics() {
   const charId     = useTypedSelector(state => state.app?.editedId)
   const isEditing  = useTypedSelector(state => state.app?.isEditing)
   const dispatch = useTypedDispatch()
-
-  const [Text, setText] = useState("Edit");
+  
   //Move id to redux storage
   const [person, setPerson] = useState<IPerson>();
   if(typeof isEditing === "undefined") {
@@ -22,36 +22,24 @@ function Characteristics() {
   }
   if(!characters) return (<h2>NOT INISALIZED</h2>)
   const character = characters.find(v => v.id.valueOf() === (charId?charId.valueOf():0))
-  if (!character) return (<div >
-    <h2>CHARACTER UNFOUND</h2>
-    <button onClick={()=>{
-          dispatch({type:"GenearateDynasty"})
-          dispatch({type:"UpdateLinks"})
-        }}>GENERATE DYNASTY</button>
-    </div>)
+  if (!character) return (<h2>CHARACTER UNFOUND</h2>)
   if(!person) {
     setPerson(character);
     return (<h2>PERSON IS NULL</h2>)
   }
   if(person.id.valueOf() !== character.id.valueOf()) setPerson(character);
 
-  function handleClick() {
-    if (isEditing) {
-      console.log(person);
-      dispatch({type:"UpdateCharacter",payload:person});
-      dispatch({type:"SwitchEditCharacter",payload:false})
-      setText("Edit");
-    } else {
-      dispatch({type:"SwitchEditCharacter",payload:true})
-      setText("Save");
-    }
-  }
-
   return (
     <div style={{ display: "grid" }}>
-      <button onClick={handleClick} style={{ width: "100%", height: "2rem" }}>
-        {Text}
-      </button>
+      <SwitchableButton cases={[
+        {content:"Edit",action:()=>{
+          dispatch({type:"SwitchEditCharacter",payload:true})
+        }},
+        {content:"Save",action:()=>{
+          dispatch({type:"UpdateCharacter",payload:person});
+          dispatch({type:"SwitchEditCharacter",payload:false})
+        }},
+      ]}/>
       <FieldCharacteristic
         fieldName={"Name: "}
         isEditing={isEditing}

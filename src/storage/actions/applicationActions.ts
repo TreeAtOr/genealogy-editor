@@ -14,6 +14,10 @@ interface ISwitchEditCharacter extends AnyAction{
     type: "SwitchEditCharacter",
     payload?:boolean
 }
+interface ISwitchShowMerrages extends AnyAction{
+    type: "SwichShowMerrages",
+    payload?:boolean
+}
 
-type IApplicationAction = ISelectCharacter | ISwitchEditCharacter
+type IApplicationAction = ISelectCharacter | ISwitchEditCharacter | ISwitchShowMerrages
 export default IApplicationAction
