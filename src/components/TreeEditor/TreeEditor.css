@@ -1,0 +1,5 @@
+.TreeEditor{
+    display: grid;
+    place-items: center;
+    grid-area: G;
+}

@@ -7,7 +7,7 @@ export interface ITreeEditorProps {
 
 const TreeEditor: React.FC<ITreeEditorProps> = (props) => {
     return (
-        <div><TreeDrawer {...props}></TreeDrawer></div>
+        <div className="TreeEditor"><TreeDrawer {...props}></TreeDrawer></div>
     );
 }
 

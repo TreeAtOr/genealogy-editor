@@ -13,16 +13,16 @@ function Characteristics() {
   const charId     = useTypedSelector(state => state.app?.editedId)
   const isEditing  = useTypedSelector(state => state.app?.isEditing)
   const dispatch = useTypedDispatch()
-  
+
   //Move id to redux storage
   const [person, setPerson] = useState<IPerson>();
   if(typeof isEditing === "undefined") {
     dispatch({type:"SwitchEditCharacter",payload:true})
     return (<h2>NOT INISALIZED</h2>)
   }
-  if(!characters) return (<h2>NOT INISALIZED</h2>)
+  if(!characters) return (<div className="Characteristics">NOT INISALIZED</div>)
   const character = characters.find(v => v.id.valueOf() === (charId?charId.valueOf():0))
-  if (!character) return (<h2>CHARACTER UNFOUND</h2>)
+  if (!character) return (<div className="Characteristics">CHARACTER UNFOUND</div>)
   if(!person) {
     setPerson(character);
     return (<h2>PERSON IS NULL</h2>)
@@ -30,7 +30,7 @@ function Characteristics() {
   if(person.id.valueOf() !== character.id.valueOf()) setPerson(character);
 
   return (
-    <div style={{ display: "grid" }}>
+    <div className="Characteristics">
       <SwitchableButton cases={[
         {content:"Edit",action:()=>{
           dispatch({type:"SwitchEditCharacter",payload:true})

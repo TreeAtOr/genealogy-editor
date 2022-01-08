@@ -74,8 +74,8 @@ const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
         edges: {
             color: "#000000"
         },
-        height: "1163px",
-        width: "100%",
+        height: "100%",
+        width: "60vw",
     };
 
     return (
@@ -84,8 +84,8 @@ const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
                 style={{
                     backgroundImage: `url(${backgndImage})`,
                     backgroundSize: "cover",
-                    height: "100%",
-                    width:  "100%"}}
+                    height: "90vh",
+                    width:  "60vw"}}
                 key = {graphKey}
                 graph={graph}
                 options={options}

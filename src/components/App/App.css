@@ -1,9 +1,13 @@
 .App {
-  text-align: center;
-  display: flex;
+  display: grid;
   width: 100vw;
-  justify-items: center;
-  align-items: center;
+
+  grid-template-columns: repeat(5,20vw);
+  grid-template-rows: 45vh 45vh 10vh;
+  grid-template-areas: 
+  "G G G C C"
+  "G G G C C"
+  "T T T C C";
 }
 
 .App-logo {
