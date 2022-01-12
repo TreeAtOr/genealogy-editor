@@ -276,7 +276,7 @@ class Generator implements IGenData{
      * generateCharacters     
      */
     public generateDynasty(count:number) {
-        for (let index = 0; index < count - 1; index++)
+        for (let index = 0; index < count; index++)
             this.produce()
         return this.characters.all
     }

@@ -75,7 +75,7 @@ const TreeDrawer: React.FC<ITreeDrawerProps> = () => {
             color: "#000000"
         },
         height: "100%",
-        width: "60vw",
+        width: "100%",
     };
 
     return (

@@ -18,9 +18,13 @@ export const Toolbar: FC<IToolbarProps> = (props) => {
                 }}
             ]}/>
             <button onClick={()=>{
-          dispatch({type:"GenearateDynasty"})
-          dispatch({type:"UpdateLinks"})
-        }}>GENERATE DYNASTY</button>
+                dispatch({type:"GenearateDynasty"})
+                dispatch({type:"UpdateLinks"})
+            }}>GENERATE DYNASTY</button>
+            <button onClick={()=>{
+                dispatch({type:"CreateNewCharacter"})
+                dispatch({type:"UpdateLinks"})
+            }}>Generate new</button>
         </div>
     );
 }

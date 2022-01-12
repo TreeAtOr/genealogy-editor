@@ -17,7 +17,7 @@ export const applicationReducer: Reducer<IApplicationState | undefined,IApplicat
             if(state.isEditing) return state
             return {...state,editedId:action.payload?action.payload:new Id(0)}
         case "SwitchEditCharacter": return {...state,isEditing:action.payload?action.payload:!state.isEditing}
-        case "SwichShowMerrages": return {...state,filtration:{...state.filtration,merrage:action.payload?action.payload:!state.filtration.merrage}}
-        default               : return state;
+        case "SwichShowMerrages"  : return {...state,filtration:{...state.filtration,merrage:action.payload?action.payload:!state.filtration.merrage}}
+        default                   : return state;
     }
 }
